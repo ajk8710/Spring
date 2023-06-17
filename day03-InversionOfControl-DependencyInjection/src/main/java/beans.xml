@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean name="e2" class="com.synergisticit.domain.Employee" init-method="m1" destroy-method="m2">
+        <property name="empId" value="2"></property>
+        <property name="name" value="Pikachu"></property>
+        <property name="designation" value="Developer"></property>
+        <property name="salary" value="100000"></property>
+        <property name="address" ref="add2"></property>
+    </bean>
+    
+    <bean name="add2" class="com.synergisticit.domain.Address">
+        <property name="addressLine1" value="House No.2"></property>
+        <property name="addressLine2" value="Road No.2"></property>
+        <property name="city" value="Pallet City"></property>
+        <property name="state" value="NY"></property>
+        <property name="country" value="USA"></property>
+    </bean>
+    
+    <bean name="add3" class="com.synergisticit.domain.Address">
+        <constructor-arg name="addressLine1" value="House No.3"></constructor-arg>
+        <constructor-arg name="addressLine2" value="Road No.3"></constructor-arg>
+        <constructor-arg name="city" value="Pallet City"></constructor-arg>
+        <constructor-arg name="state" value="NY"></constructor-arg>
+        <constructor-arg name="country" value="USA"></constructor-arg>
+    </bean>
+    
+    <bean name="e3" class="com.synergisticit.domain.Employee">
+        <property name="empId" value="3"></property>
+        <property name="name" value="Raichu"></property>
+        <property name="designation" value="Developer"></property>
+        <property name="salary" value="100000"></property>
+        <property name="address" ref="add2"></property>
+    </bean>
+    
+    <bean name="e4" class="com.synergisticit.domain.Employee" scope="prototype">
+        <constructor-arg name="empId" value="4"></constructor-arg>
+        <constructor-arg name="name" value="Squirtle"></constructor-arg>
+        <constructor-arg name="designation" value="Developer"></constructor-arg>
+        <constructor-arg name="salary" value="100000"></constructor-arg>
+        <constructor-arg name="address" ref="add2"></constructor-arg>
+    </bean>
+    
+    <bean name="e5" class="com.synergisticit.domain.Employee" init-method="m1" destroy-method="m2" scope="singleton">
+        <constructor-arg name="empId" value="5"></constructor-arg>
+        <constructor-arg name="name" value="Charmander"></constructor-arg>
+        <constructor-arg name="designation" value="Developer"></constructor-arg>
+        <constructor-arg name="salary" value="100000"></constructor-arg>
+        <constructor-arg name="address" ref="add3"></constructor-arg>
+    </bean>
+
+</beans>
