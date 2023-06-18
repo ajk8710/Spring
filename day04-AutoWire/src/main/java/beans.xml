@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+    <!-- <bean name="e2" class="com.synergisticit.domain.Employee" autowire="byName"> -->
+    <!-- <bean name="e2" class="com.synergisticit.domain.Employee" autowire="byType"> -->
+    <!-- <bean name="e2" class="com.synergisticit.domain.Employee" autowire="constructor"> -->
+    <bean name="e2" class="com.synergisticit.domain.Employee" autowire="constructor">
+        <constructor-arg name="empId" value="2"></constructor-arg>
+        <constructor-arg name="name" value="Pikachu"></constructor-arg>
+        <constructor-arg name="designation" value="Developer"></constructor-arg>
+        <constructor-arg name="salary" value="100000"></constructor-arg>
+        <property name="address" ref="address2"></property>  <!-- property injection overwrites constructor injection -->
+        <constructor-arg name="address" ref="address"></constructor-arg>
+    </bean>
+    
+    <bean name="address" class="com.synergisticit.domain.Address">
+        <property name="addressLine1" value="auto wired House"></property>
+        <property name="addressLine2" value="auto wired Road"></property>
+        <property name="city" value="Pallet City"></property>
+        <property name="state" value="NY"></property>
+        <property name="country" value="USA"></property>
+    </bean>
+    
+    <bean name="address2" class="com.synergisticit.domain.Address">
+        <property name="addressLine1" value="House 2"></property>
+        <property name="addressLine2" value="Road 2"></property>
+        <property name="city" value="Pallet City"></property>
+        <property name="state" value="NY"></property>
+        <property name="country" value="USA"></property>
+    </bean>
+    
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="admin"></property>
+    </bean>
+    
+    <bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+    <bean name="color" class="com.synergisticit.domain.Color">
+        <property name="red" value="100"/>
+        <property name="green" value="100"/>
+        <property name="blue" value="100"/>
+    </bean>
+    
+</beans>
