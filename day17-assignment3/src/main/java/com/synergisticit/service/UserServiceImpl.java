@@ -36,11 +36,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(long userid) {
-        return userRepository.getReferenceById(userid);  // getReferenceById throws exception if not exists
+        return userRepository.getReferenceById(userid);  // getReferenceById on JpaRepository throws exception if not exists
     }
 
     @Override
-    public void deleteById(long userid) {
+    public void deleteById(long userid) {  // deleteById on JpaRepository silently ignored if not exists
         userRepository.deleteById(userid);
     }
     
