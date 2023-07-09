@@ -17,11 +17,11 @@
 <f:form action="saveUser" modelAttribute="user">  <!-- action is what happens upon submit, modelAttribute is name of class starting with lower case -->
 <table border="1">
 <tr>  <!-- table row -->
-<td>User Id:</td> <td><f:input path="userid"/></td>  <!-- table data (table columns) -->  <!-- path binds the form field to the bean property. -->
+<td>User Id:</td> <td><f:input path="userid" value="${retrievedUser.userid}"/></td>  <!-- table data (table columns) -->  <!-- path binds the form field to the bean property. -->
 </tr>
 
 <tr>
-<td>Name:</td> <td><f:input path="username"/></td>
+<td>Name:</td> <td><f:input path="username" value="${retrievedUser.username}"/></td>
 </tr>
 
 <tr>
@@ -29,7 +29,7 @@
 </tr>
 
 <tr>
-<td>Mobile:</td> <td><f:input path="mobile"/></td>
+<td>Mobile:</td> <td><f:input path="mobile" value="${retrievedUser.mobile}"/></td>
 </tr>
 
 <tr>
