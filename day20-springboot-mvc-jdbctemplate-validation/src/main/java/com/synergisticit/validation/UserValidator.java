@@ -26,7 +26,7 @@ public class UserValidator implements Validator {
     
         if (user.getMobile().length() < 10) {
             // rejectValue(field name, error code, default message)
-            errors.rejectValue("mobile", "user.mobile.length", "must be of 10 characters (msg from UserValidator)");
+            errors.rejectValue("mobile", "user.mobile.length", "must be of 10 chars (msg from UserValidator)");
         }
     }
 
