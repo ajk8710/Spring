@@ -78,9 +78,11 @@
 
 <tr>
 <td>Spoken Languages:</td>  <!-- Checkboxes -->
+<td>
 <c:forEach items="${spokenLanguages}" var="sl">
-    <td><f:checkbox path="spokenLanguages" value="${sl}" label="${sl}"/></td>
+    <f:checkbox path="spokenLanguages" value="${sl}" label="${sl}"/>
 </c:forEach>
+</td>
 <td><f:errors path="spokenLanguages" cssClass="error"/></td>
 </tr>
 
