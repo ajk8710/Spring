@@ -38,7 +38,7 @@
     
     <tr>
     <td> <b>Password:</b> </td>
-    <td> <f:password path="password"/> </td>
+    <td> <f:input path="password"/> </td>
     <td> <f:errors path="password" cssClass="error"/> </td>
     </tr>
     
@@ -55,8 +55,20 @@
     </tr>
     
     <tr>
-    <td> <b>Roles: (should be drop down)</b> </td>
-    <td> <f:input path="roles"/> </td>
+    <td> <b>Roles:</b> </td>
+    <td>
+    <!--
+    <c:forEach items="${ListofAllRoles}" var="r">
+        <f:checkbox path="roles" value="${r}" label="${r.name}"/>
+    </c:forEach>
+    -->
+    <f:select path="roles">
+        <c:forEach items="${ListofAllRoles}" var="r">
+            <f:option value="${r.roleId}" label="${r.name}"></f:option>
+        </c:forEach>
+    </f:select>
+    </td>
+    
     <td> <f:errors path="roles" cssClass="error"/> </td>
     </tr>
 
@@ -68,11 +80,20 @@
 </f:form>
 
 <c:if test="${not empty users}">
-    <table border=1>
-        <thead><tr> <td>ID</td> <td>Name</td> <td>Password</td> <td>Email</td> <td>Mobile</td> <td>Roles</td> </tr></thead>
+    <table border="1">
+        <thead><tr> <td>ID</td> <td>Name</td> <td>Password</td> <td>Email</td> <td>Mobile</td> <td>Roles</td> <td>Action</td> </tr></thead>
 
         <c:forEach items="${users}" var="u">
-            <td>${u.userId}</td> <td>${u.username}</td> <td>${u.password}</td> <td>${u.email}</td> <td>${u.mobile}</td> <td>${u.roles}</td>
+            <tr>
+            <td>${u.userId}</td> <td>${u.username}</td> <td>${u.password}</td> <td>${u.email}</td> <td>${u.mobile}</td>
+            <td>
+                <c:forEach items="${u.roles}" var="r">  <!--there is no roles attribute on user, user_role is separate table. But there is on class -->
+                    ${r.name}
+                </c:forEach>
+            </td>
+            
+            <td> <a href="updateUser?userId=${u.userId}"> Update </a> | <a href="deleteUser?userId=${u.userId}"> Delete </a> </td>
+            </tr>
         </c:forEach>
     </table>
 </c:if>
