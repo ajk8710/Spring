@@ -26,31 +26,31 @@
 
     <tr>
     <td> <b>ID:</b> </td>
-    <td> <f:input path="userId"/> </td>
+    <td> <f:input path="userId" value="${retrievedUser.userId}"/> </td>
     <td> <f:errors path="userId" cssClass="error"/> </td>
     </tr>
     
     <tr>
     <td> <b>Name:</b> </td>
-    <td> <f:input path="username"/> </td>
+    <td> <f:input path="username" value="${retrievedUser.username}"/> </td>
     <td> <f:errors path="username" cssClass="error"/> </td>
     </tr>
     
     <tr>
     <td> <b>Password:</b> </td>
-    <td> <f:input path="password"/> </td>
+    <td> <f:input path="password" value="${retrievedUser.password}"/> </td>
     <td> <f:errors path="password" cssClass="error"/> </td>
     </tr>
     
     <tr>
     <td> <b>Email:</b> </td>
-    <td> <f:input path="email"/> </td>
+    <td> <f:input path="email" value="${retrievedUser.email}"/> </td>
     <td> <f:errors path="email" cssClass="error"/> </td>
     </tr>
 
     <tr>
     <td> <b>Mobile:</b> </td>
-    <td> <f:input path="mobile"/> </td>
+    <td> <f:input path="mobile" value="${retrievedUser.mobile}"/> </td>
     <td> <f:errors path="mobile" cssClass="error"/> </td>
     </tr>
     
@@ -59,10 +59,13 @@
     <td>
     <!--
     <c:forEach items="${ListofAllRoles}" var="r">
-        <f:checkbox path="roles" value="${r}" label="${r.name}"/>
+        <f:checkbox path="roles" value="${r.roleId}" label="${r.name}"/>
     </c:forEach>
     -->
-    <f:select path="roles">
+    <!-- Having model.addAttribute("user", retrievedUser) and letting user form to be filled in by path without specifying value -->
+    <!-- led to error due to user.role to be filled in selection form of String - cannot convert Object (Role) to String. -->
+    <f:select path="roles" value="${dontFillInRoles}">  <!-- don't fill in when clicking update or after save -->
+        <f:option value="" label="Please select roles below"></f:option>
         <c:forEach items="${ListofAllRoles}" var="r">
             <f:option value="${r.roleId}" label="${r.name}"></f:option>
         </c:forEach>
@@ -87,7 +90,7 @@
             <tr>
             <td>${u.userId}</td> <td>${u.username}</td> <td>${u.password}</td> <td>${u.email}</td> <td>${u.mobile}</td>
             <td>
-                <c:forEach items="${u.roles}" var="r">  <!--there is no roles attribute on user, user_role is separate table. But there is on class -->
+                <c:forEach items="${u.roles}" var="r">
                     ${r.name}
                 </c:forEach>
             </td>
