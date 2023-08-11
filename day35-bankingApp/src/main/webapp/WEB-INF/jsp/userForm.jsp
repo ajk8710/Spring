@@ -19,7 +19,7 @@
 
 <body>
 <div align="center">
-<h1>Employee Management Form</h1>
+<h1>User Management Form</h1>
 
 <f:form action="saveUser" method="post" modelAttribute="user">  <!-- modelAttribute is name of class starting with lower case -->
 <table>

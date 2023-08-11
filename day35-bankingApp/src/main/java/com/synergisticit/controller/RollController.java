@@ -28,12 +28,12 @@ public class RollController {
 
         if (!br.hasErrors()) {
             roleService.saveRole(role);
-            // do not need to call modelData(model) because it's in userForm method
-            return "redirect:roleForm";  // redirect to url userForm which calls userForm method
+            // do not need to call modelData(model) because it's in roleForm method
+            return "redirect:roleForm";  // redirect to url roleForm which calls roleForm method
         }
 
         modelData(model);
-        return "roleForm";  // do not redirect, keep the info user entered and show error messages
+        return "roleForm";  // do not redirect, keep the info entered and show error messages
     }
     
     @RequestMapping("updateRole")
