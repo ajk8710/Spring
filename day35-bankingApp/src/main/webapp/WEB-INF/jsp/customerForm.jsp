@@ -44,14 +44,14 @@
     
     <tr>
     <td> <b>Date of Birth:</b> </td>  <!-- A Calendar -->
-    <td><f:input type="date" path="customerDob" value="<%=java.time.LocalDate.now()%>"/></td>
-    <td><f:errors path="customerDob" cssClass="error"/></td>
+    <td> <f:input type="date" path="customerDob" value="<%=java.time.LocalDate.now()%>"/> </td>
+    <td> <f:errors path="customerDob" cssClass="error"/> </td>
     </tr>
 
     <tr>
     <td> <b>Mobile:</b> </td>
-    <td><f:input path="customerMobileNum" value="${retrievedCustomer.customerMobileNum}"/></td>
-    <td><f:errors path="customerMobileNum" cssClass="error"/></td>
+    <td> <f:input path="customerMobileNum" value="${retrievedCustomer.customerMobileNum}"/> </td>
+    <td> <f:errors path="customerMobileNum" cssClass="error"/> </td>
     </tr>
     
     <tr>
@@ -66,7 +66,7 @@
     <f:select path="user">
         <c:forEach items="${ListofAllUsers}" var="u">
                 <c:choose>
-                    <c:when test="${selectedUser.contains(u)}">
+                    <c:when test="${selectedUser.equals(u)}">
                         <f:option value="${u.userId}" label="${u.username}" selected="true"></f:option>
                     </c:when>
                     <c:otherwise>
@@ -75,7 +75,6 @@
                 </c:choose>
         </c:forEach>
     </f:select>
-    
     </td>
     <td> <f:errors path="user" cssClass="error"/> </td>
     </tr>
@@ -86,37 +85,37 @@
 
     <tr>
     <td>Address Line1:</td>
-    <td><f:input path="customerAddress.addressLine1"/></td>
+    <td><f:input path="customerAddress.addressLine1" value="${retrievedCustomer.customerAddress.addressLine1}"/></td>
     <td><f:errors path="customerAddress.addressLine1" cssClass="error"/></td>
     </tr>
 
     <tr>
     <td>Address Line2:</td>
-    <td><f:input path="customerAddress.addressLine2"/></td>
+    <td><f:input path="customerAddress.addressLine2" value="${retrievedCustomer.customerAddress.addressLine2}"/></td>
     <td><f:errors path="customerAddress.addressLine2" cssClass="error"/></td>
     </tr>
 
     <tr>
     <td>City:</td>
-    <td><f:input path="customerAddress.city"/></td>
+    <td><f:input path="customerAddress.city" value="${retrievedCustomer.customerAddress.city}"/></td>
     <td><f:errors path="customerAddress.city" cssClass="error"/></td>
     </tr>
 
     <tr>
     <td>State:</td>
-    <td><f:input path="customerAddress.state"/></td>
+    <td><f:input path="customerAddress.state" value="${retrievedCustomer.customerAddress.state}"/></td>
     <td><f:errors path="customerAddress.state" cssClass="error"/></td>
     </tr>
 
     <tr>
     <td>Country:</td>
-    <td><f:input path="customerAddress.country"/></td>
+    <td><f:input path="customerAddress.country" value="${retrievedCustomer.customerAddress.country}"/></td>
     <td><f:errors path="customerAddress.country" cssClass="error"/></td>
     </tr>
 
     <tr>
     <td>Zip Code:</td>
-    <td><f:input path="customerAddress.zipCode"/></td>
+    <td><f:input path="customerAddress.zipCode" value="${retrievedCustomer.customerAddress.zipCode}"/></td>
     <td><f:errors path="customerAddress.zipCode" cssClass="error"/></td>
     </tr>
 
@@ -131,13 +130,13 @@
     <table border="1">
         <thead><tr>
             <td>ID</td> <td>Name</td> <td>Gender</td> <td>DOB</td> 
-            <td>Mobile</td> <td>Real ID</td> <td>City & State</td> <td>Username</td> <td>Action</td>
+            <td>Mobile</td> <td>Real ID</td> <td>Username</td> <td>City & State</td> <td>Action</td>
         </tr></thead>
 
         <c:forEach items="${customers}" var="c">
             <tr>
             <td>${c.customerId}</td> <td>${c.customerName}</td> <td>${c.customerGender}</td> <td>${c.customerDob}</td>
-            <td>${c.customerMobileNum}</td> <td>${c.realId}</td> <td>${c.customerAddress.city}, ${c.customerAddress.state}</td> <td>${c.user.username}</td>
+            <td>${c.customerMobileNum}</td> <td>${c.realId}</td> <td>${c.user.username}</td> <td>${c.customerAddress.city}, ${c.customerAddress.state}</td>
             <td> <a href="updateCustomer?customerId=${c.customerId}"> Update </a> | <a href="deleteCustomer?customerId=${c.customerId}"> Delete </a> </td>
             </tr>
         </c:forEach>

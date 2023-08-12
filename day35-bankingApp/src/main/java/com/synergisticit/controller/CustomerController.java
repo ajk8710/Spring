@@ -1,20 +1,19 @@
 package com.synergisticit.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.synergisticit.domain.Customer;
-import com.synergisticit.domain.Role;
 import com.synergisticit.domain.User;
 import com.synergisticit.service.CustomerService;
 import com.synergisticit.service.UserService;
+import com.synergisticit.validation.CustomerValidator;
 
 import jakarta.validation.Valid;
 
@@ -23,6 +22,12 @@ public class CustomerController {
     
     @Autowired CustomerService customerService;
     @Autowired UserService userService;
+    @Autowired CustomerValidator customerValidator;
+    
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+//        binder.addValidators(customerValidator);
+//    }
     
     @RequestMapping("customerForm")
     public String customerForm(Customer customer, Model model) {
