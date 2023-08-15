@@ -14,12 +14,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 public class Customer {
     
@@ -40,6 +44,7 @@ public class Customer {
     private String customerMobileNum;
     
     @Embedded
+    @Valid
     private Address customerAddress;
     
     @NotEmpty

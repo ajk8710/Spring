@@ -24,10 +24,12 @@ public class CustomerController {
     @Autowired UserService userService;
     @Autowired CustomerValidator customerValidator;
     
-//    @InitBinder
-//    public void initBinder(WebDataBinder binder) {
-//        binder.addValidators(customerValidator);
-//    }
+    // This class-wise validator causes error on update call, trying to validate selectedUser as customer.
+    // Thus have validator in saveCustomer method, instead of having class-wise.
+    // @InitBinder
+    // public void initBinder(WebDataBinder binder) {
+    //     binder.addValidators(customerValidator);
+    // }
     
     @RequestMapping("customerForm")
     public String customerForm(Customer customer, Model model) {
@@ -37,6 +39,7 @@ public class CustomerController {
     
     @RequestMapping("saveCustomer")
     public String saveCustomer(@Valid @ModelAttribute Customer customer, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
+        customerValidator.validate(customer, br);
         
         if (!br.hasErrors()) {
             customerService.saveCustomer(customer);

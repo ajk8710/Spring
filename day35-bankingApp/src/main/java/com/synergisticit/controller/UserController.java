@@ -32,6 +32,8 @@ public class UserController {
     @RequestMapping("saveUser")
     public String saveUser(@Valid @ModelAttribute User user, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
         
+        System.out.println(user.getUsername() + " " + user.getRoles().size());
+        
         if (!br.hasErrors()) {
             userService.saveUser(user);
             // do not need to call modelData(model) because it's in userForm method
