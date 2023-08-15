@@ -14,6 +14,7 @@ import com.synergisticit.domain.Customer;
 import com.synergisticit.service.AccountService;
 import com.synergisticit.service.BranchService;
 import com.synergisticit.service.CustomerService;
+import com.synergisticit.validation.AccountValidator;
 
 import jakarta.validation.Valid;
 
@@ -23,6 +24,7 @@ public class AccountController {
     @Autowired AccountService accountService;
     @Autowired CustomerService customerService;
     @Autowired BranchService branchService;
+    @Autowired AccountValidator accountValidator;
     
     @RequestMapping("accountForm")
     public String accountForm(Account account, Model model) {
@@ -32,6 +34,7 @@ public class AccountController {
     
     @RequestMapping("saveAccount")
     public String saveAccount(@Valid @ModelAttribute Account account, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
+        accountValidator.validate(account, br);
         
         if (!br.hasErrors()) {
             accountService.saveAccount(account);

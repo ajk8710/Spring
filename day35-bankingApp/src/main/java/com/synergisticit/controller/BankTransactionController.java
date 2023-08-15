@@ -11,7 +11,7 @@ import com.synergisticit.domain.BankTransaction;
 import com.synergisticit.domain.TransactionType;
 import com.synergisticit.service.AccountService;
 import com.synergisticit.service.BankTransactionService;
-
+import com.synergisticit.validation.BankTransactionValidator;
 
 import jakarta.validation.Valid;
 
@@ -20,6 +20,7 @@ public class BankTransactionController {
     
     @Autowired BankTransactionService bankTransactionService;
     @Autowired AccountService accountService;
+    @Autowired BankTransactionValidator bankTransactionValidator;
     
     @RequestMapping("bankTransactionForm")
     public String bankTransactionForm(BankTransaction bankTransaction, Model model) {
@@ -29,6 +30,7 @@ public class BankTransactionController {
     
     @RequestMapping("saveBankTransaction")
     public String saveBankTransaction(@Valid @ModelAttribute BankTransaction bankTransaction, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
+        bankTransactionValidator.validate(bankTransaction, br);
         
         if (!br.hasErrors()) {
             bankTransactionService.saveBankTransaction(bankTransaction);
@@ -45,6 +47,7 @@ public class BankTransactionController {
         BankTransaction retrievedBankTransaction = bankTransactionService.getBankTransactionById(bankTransaction.getBankTransactionId());
         model.addAttribute("retrievedBankTransaction", retrievedBankTransaction);
         
+        // using retrievedBankTransaction on the form to get the field works fine.
         // TransactionType selectedTransactionType = retrievedBankTransaction.getTransactionType();
         // model.addAttribute("selectedTransactionType", selectedTransactionType);
         

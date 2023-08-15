@@ -36,7 +36,7 @@
     <f:select path="bankTransactionFromAccount">
         <c:forEach items="${ListofAllAccounts}" var="a">
             <c:choose>
-                <c:when test="${retrievedBankTransaction.bankTransactionFromAccount.equals(a)}">
+                <c:when test="${retrievedBankTransaction.bankTransactionFromAccount.equals(a.accountId)}">  <!-- bankTransactionFromAccount is an integer, so checking equality with id -->
                     <f:option value="${a.accountId}" label="${a.accountHolder}" selected="true"></f:option>
                 </c:when>
                 <c:otherwise>
@@ -55,7 +55,7 @@
     <f:select path="bankTransactionToAccount">
         <c:forEach items="${ListofAllAccounts}" var="a">
             <c:choose>
-                <c:when test="${retrievedBankTransaction.bankTransactionToAccount.equals(a)}">
+                <c:when test="${retrievedBankTransaction.bankTransactionToAccount.equals(a.accountId)}">  <!-- bankTransactionToAccount is an integer, so checking equality with id -->
                     <f:option value="${a.accountId}" label="${a.accountHolder}" selected="true"></f:option>
                 </c:when>
                 <c:otherwise>

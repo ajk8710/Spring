@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.synergisticit.domain.Role;
 import com.synergisticit.service.RoleService;
+import com.synergisticit.validation.RoleValidator;
 
 import jakarta.validation.Valid;
 
@@ -16,6 +17,7 @@ import jakarta.validation.Valid;
 public class RollController {
     
     @Autowired RoleService roleService;
+    @Autowired RoleValidator roleValidator;
     
     @RequestMapping("roleForm")
     public String roleForm(Role role, Model model) {
@@ -25,7 +27,8 @@ public class RollController {
     
     @RequestMapping("saveRole")
     public String saveRole(@Valid @ModelAttribute Role role, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
-
+        roleValidator.validate(role, br);
+        
         if (!br.hasErrors()) {
             roleService.saveRole(role);
             // do not need to call modelData(model) because it's in roleForm method

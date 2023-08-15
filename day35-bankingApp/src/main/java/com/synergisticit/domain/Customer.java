@@ -15,8 +15,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,23 +29,19 @@ public class Customer {
     @Id
     private Long customerId;
     
-    @NotEmpty
     private String customerName;
     
-    @NotEmpty
     private String customerGender;
     
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate customerDob;
     
-    @NotEmpty
     private String customerMobileNum;
     
     @Embedded
     @Valid
     private Address customerAddress;
     
-    @NotEmpty
     private String realId;
     
     @OneToMany(mappedBy="accountCustomer")

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.synergisticit.domain.Branch;
 import com.synergisticit.service.BranchService;
+import com.synergisticit.validation.BranchValidator;
 
 import jakarta.validation.Valid;
 
@@ -16,6 +17,7 @@ import jakarta.validation.Valid;
 public class BranchController {
     
     @Autowired BranchService branchService;   
+    @Autowired BranchValidator branchValidator;
     
     @RequestMapping("branchForm")
     public String branchForm(Branch branch, Model model) {
@@ -25,6 +27,7 @@ public class BranchController {
     
     @RequestMapping("saveBranch")
     public String saveBranch(@Valid @ModelAttribute Branch branch, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
+        branchValidator.validate(branch, br);
         
         if (!br.hasErrors()) {
             branchService.saveBranch(branch);

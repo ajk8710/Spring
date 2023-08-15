@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,12 +22,10 @@ import lombok.Setter;
 @Entity
 public class Account {
 
-    @NotNull
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
     private Long accountId;
     
-    @NotNull
     private String accountHolder;
     
     @Enumerated(EnumType.STRING)

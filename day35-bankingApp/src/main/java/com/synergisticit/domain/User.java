@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +26,8 @@ public class User {
     @Id
     private Long userId;
     
-    @NotEmpty
     private String username;
     
-    @NotEmpty
     private String password;
     
     @JoinTable(name="user_role",
