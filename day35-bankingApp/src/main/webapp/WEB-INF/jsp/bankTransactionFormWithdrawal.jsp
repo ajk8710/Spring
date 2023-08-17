@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Deposit Form</title>
+    <title>Withdrawal Form</title>
     <style>
         .error{
             color:red;
@@ -19,9 +19,9 @@
 
 <body>
 <div align="center">
-<h1>Deposit Form</h1>
+<h1>Withdrawal Form</h1>
 
-<f:form action="saveDeposit" method="post" modelAttribute="bankTransaction">  <!-- modelAttribute is name of class starting with lower case -->
+<f:form action="saveWithdrawal" method="post" modelAttribute="bankTransaction">  <!-- modelAttribute is name of class starting with lower case -->
 <table>
     
     <tr>
@@ -31,12 +31,12 @@
     </tr>
     
     <tr>
-    <td> <b>Select an Account to Deposit:</b> </td>
+    <td> <b>Select an Account to Withdraw:</b> </td>
     <td>
-    <f:select path="bankTransactionToAccount">
+    <f:select path="bankTransactionFromAccount">
         <c:forEach items="${ListofAllAccounts}" var="a">
             <c:choose>
-                <c:when test="${retrievedBankTransaction.bankTransactionToAccount.equals(a.accountId)}">  <!-- bankTransactionToAccount is an integer, so checking equality with id -->
+                <c:when test="${retrievedBankTransaction.bankTransactionFromAccount.equals(a.accountId)}">  <!-- bankTransactionFromAccount is an integer, so checking equality with id -->
                     <f:option value="${a.accountId}" label="${a.accountId} ${a.accountHolder} ${a.accountType}" selected="true"></f:option>
                 </c:when>
                 <c:otherwise>
@@ -46,7 +46,7 @@
         </c:forEach>
     </f:select>
     </td>
-    <td> <f:errors path="bankTransactionToAccount" cssClass="error"/> </td>
+    <td> <f:errors path="bankTransactionFromAccount" cssClass="error"/> </td>
     </tr>
     
     <tr>
@@ -112,7 +112,7 @@
             <td>${t.bankTransactionId}</td> <td>${t.bankTransactionFromAccount}</td> <td>${t.bankTransactionToAccount}</td> <td>${t.transactionAmount}</td> <td>${t.transactionType}</td>
             <td>${t.bankTransactionDateTime}</td> <td>${t.comments}</td>
             <%--
-            <td> <a href="depositForm/update?bankTransactionId=${t.bankTransactionId}"> Update </a> | <a href="depositForm/delete?bankTransactionId=${t.bankTransactionId}"> Delete </a> </td>
+            <td> <a href="withdrawalForm/update?bankTransactionId=${t.bankTransactionId}"> Update </a> | <a href="withdrawalForm/delete?bankTransactionId=${t.bankTransactionId}"> Delete </a> </td>
             --%>
             </tr>
         </c:forEach>

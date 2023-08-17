@@ -25,7 +25,7 @@
 <table>
 
     <tr>
-    <td> <b>ID:</b> </td>
+    <td> <b>ID (auto-generated if not specify):</b> </td>
     <td> <f:input path="accountId" value="${retrievedAccount.accountId}"/> </td>
     <td> <f:errors path="accountId" cssClass="error"/> </td>
     </tr>

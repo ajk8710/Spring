@@ -33,14 +33,14 @@ public class BankTransactionControllerDeposit {
     public String saveBankTransaction(@Valid @ModelAttribute BankTransaction bankTransaction, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job
         bankTransactionValidatorDeposit.validate(bankTransaction, br);
         
-        if (!br.hasErrors()) {
+        if (!br.hasErrors()) {  // update account for deposit and save transaction for record.
             Account toAccount = accountService.getAccountById(bankTransaction.getBankTransactionToAccount());
             double depositAmount = bankTransaction.getTransactionAmount();
             toAccount.setAccountBalance(toAccount.getAccountBalance() + depositAmount);
             accountService.saveAccount(toAccount);
             bankTransactionService.saveBankTransaction(bankTransaction);
             
-            // do not need to call modelData(model) because it's in bankTransactionForm method
+            // do not need to call modelData(model) because it's in bankTransactionFormDeposit method
             return "redirect:depositForm";  // redirect to url depositForm which calls bankTransactionFormDeposit method
         }
         
@@ -48,6 +48,7 @@ public class BankTransactionControllerDeposit {
         return "bankTransactionFormDeposit";  // do not redirect, keep the info entered and show error messages
     }
     
+    /*
     @RequestMapping("depositForm/update")
     public String updateBankTransaction(BankTransaction bankTransaction, Model model) {  // BankTransaction object created with only id is passed in by request param
         BankTransaction retrievedBankTransaction = bankTransactionService.getBankTransactionById(bankTransaction.getBankTransactionId());
@@ -68,10 +69,11 @@ public class BankTransactionControllerDeposit {
         modelData(model);
         return "redirect:bankTransactionFormDeposit";
     }
+    */
     
     private void modelData(Model model) {
         model.addAttribute("transactions", bankTransactionService.getAllBankTransactions());
-        model.addAttribute("ListofAllAccounts", accountService.getAllAccounts());
+        model.addAttribute("ListofAllAccounts", accountService.getAllAccounts());        
         // model.addAttribute("transactionTypes", TransactionType.values());
         model.addAttribute("selectedTransactionType", TransactionType.DEPOSIT);
     }
