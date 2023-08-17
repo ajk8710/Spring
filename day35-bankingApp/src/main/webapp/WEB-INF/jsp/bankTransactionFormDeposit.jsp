@@ -7,7 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>== Bank Transaction Form ==</title>
+    <title>Deposit Form</title>
     <style>
         .error{
             color:red;
@@ -19,47 +19,28 @@
 
 <body>
 <div align="center">
-<h1>Bank Transaction Management Form</h1>
+<h1>Deposit Form</h1>
 
-<f:form action="saveBankTransaction" method="post" modelAttribute="bankTransaction">  <!-- modelAttribute is name of class starting with lower case -->
+<f:form action="saveDeposit" method="post" modelAttribute="bankTransaction">  <!-- modelAttribute is name of class starting with lower case -->
 <table>
     
     <tr>
-    <td> <b>ID:</b> </td>
+    <td> <b>ID (auto-generated if not specify):</b> </td>
     <td> <f:input path="bankTransactionId" value="${retrievedBankTransaction.bankTransactionId}"/> </td>
     <td> <f:errors path="bankTransactionId" cssClass="error"/> </td>
     </tr>
-    
+        
     <tr>
-    <td> <b>Select an Account From:</b> </td>
-    <td>
-    <f:select path="bankTransactionFromAccount">
-        <c:forEach items="${ListofAllAccounts}" var="a">
-            <c:choose>
-                <c:when test="${retrievedBankTransaction.bankTransactionFromAccount.equals(a.accountId)}">  <!-- bankTransactionFromAccount is an integer, so checking equality with id -->
-                    <f:option value="${a.accountId}" label="${a.accountId}" selected="true"></f:option>
-                </c:when>
-                <c:otherwise>
-                    <f:option value="${a.accountId}" label="${a.accountId}"></f:option>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </f:select>
-    </td>
-    <td> <f:errors path="bankTransactionFromAccount" cssClass="error"/> </td>
-    </tr>
-    
-    <tr>
-    <td> <b>Select an Account To:</b> </td>
+    <td> <b>Select an Account to Deposit:</b> </td>
     <td>
     <f:select path="bankTransactionToAccount">
         <c:forEach items="${ListofAllAccounts}" var="a">
             <c:choose>
                 <c:when test="${retrievedBankTransaction.bankTransactionToAccount.equals(a.accountId)}">  <!-- bankTransactionToAccount is an integer, so checking equality with id -->
-                    <f:option value="${a.accountId}" label="${a.accountId}" selected="true"></f:option>
+                    <f:option value="${a.accountId}" label="${a.accountId} ${a.accountHolder} ${a.accountType}" selected="true"></f:option>
                 </c:when>
                 <c:otherwise>
-                    <f:option value="${a.accountId}" label="${a.accountId}"></f:option>
+                    <f:option value="${a.accountId}" label="${a.accountId} ${a.accountHolder} ${a.accountType}"></f:option>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
@@ -76,6 +57,13 @@
     
     <tr>
     <td> <b>Transaction Type:</b> </td>
+    <td> <f:input path="transactionType" value="${selectedTransactionType}" readonly="true"/> </td>
+    <td> <f:errors path="transactionType" cssClass="error"/> </td>
+    </tr>
+    
+    <%--
+    <tr>
+    <td> <b>Transaction Type:</b> </td>
     <td>
         <c:forEach items="${transactionTypes}" var="t">
             <c:choose>
@@ -90,6 +78,7 @@
     </td>
     <td> <f:errors path="transactionType" cssClass="error"/> </td>
     </tr>
+    --%>
     
     <tr>
     <td> <b>Transaction Date:</b> </td>  <!-- A Calendar -->
@@ -110,18 +99,21 @@
 </table>
 </f:form>
 
+<h3>All Transactions</h3>
 <c:if test="${not empty transactions}">
     <table border="1">
         <thead><tr>
             <td>ID</td> <td>Account From</td> <td>Account To</td> <td>Amount</td> <td>Type</td>
-            <td>Date</td> <td>Comments</td> <td>Action</td>
+            <td>Date</td> <td>Comments</td> <%-- <td>Action</td> --%>
         </tr></thead>
 
         <c:forEach items="${transactions}" var="t">
             <tr>
             <td>${t.bankTransactionId}</td> <td>${t.bankTransactionFromAccount}</td> <td>${t.bankTransactionToAccount}</td> <td>${t.transactionAmount}</td> <td>${t.transactionType}</td>
             <td>${t.bankTransactionDateTime}</td> <td>${t.comments}</td>
-            <td> <a href="updateBankTransaction?bankTransactionId=${t.bankTransactionId}"> Update </a> | <a href="deleteBankTransaction?bankTransactionId=${t.bankTransactionId}"> Delete </a> </td>
+            <%--
+            <td> <a href="depositForm/update?bankTransactionId=${t.bankTransactionId}"> Update </a> | <a href="depositForm/delete?bankTransactionId=${t.bankTransactionId}"> Delete </a> </td>
+            --%>
             </tr>
         </c:forEach>
     </table>
