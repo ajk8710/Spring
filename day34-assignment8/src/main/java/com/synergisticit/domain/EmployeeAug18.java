@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public class EmployeeAug18 {
     @Id int empId;
-    String firtsName;
+    String firstName;
     String lastName;
     String designation;
     double salary;

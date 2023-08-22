@@ -19,16 +19,11 @@ public class CommandLineRunnerImpl0 implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<EmployeeAug18> employees = employeeAug18Repository.findAll();
-        System.out.println(" == Employees ==");
-        for (EmployeeAug18 e : employees) {
-            System.out.println(e.getEmpId() + " " + e.getFirtsName() + " " + e.getLastName());
-        }
-        System.out.println();
-        
+
         Scanner input = new Scanner(System.in);
         String choice = "0";
         while (!choice.equals("4")) {
+            printAllEmployees(employeeAug18Repository);
             System.out.print("Enter 1 for save, 2 to update, 3 delete, 4 to quit: ");
             
             choice = input.next();
@@ -38,30 +33,29 @@ public class CommandLineRunnerImpl0 implements CommandLineRunner {
                 int id = input.nextInt();
                 System.out.print("Please enter first name: ");
                 String firstName = input.next();
-                System.out.print("Please enter second name: ");
-                String secondName = input.next();
+                System.out.print("Please enter last name: ");
+                String lastName = input.next();
                 System.out.print("Please enter designation: ");
                 String designation = input.next();
                 System.out.print("Please enter salary: ");
                 double salary = input.nextDouble();
                 
-                EmployeeAug18 newEmp = new EmployeeAug18(id, firstName, secondName, designation, salary);
+                EmployeeAug18 newEmp = new EmployeeAug18(id, firstName, lastName, designation, salary);
                 employeeAug18Repository.save(newEmp);
-                
             }
             else if (choice.equals("2")) {
                 System.out.print("Please enter emp id to update: ");
                 int id = input.nextInt();
                 System.out.print("Please enter first name: ");
                 String firstName = input.next();
-                System.out.print("Please enter second name: ");
-                String secondName = input.next();
+                System.out.print("Please enter last name: ");
+                String lastName = input.next();
                 System.out.print("Please enter designation: ");
                 String designation = input.next();
                 System.out.print("Please enter salary: ");
                 double salary = input.nextDouble();
                 
-                EmployeeAug18 newEmp = new EmployeeAug18(id, firstName, secondName, designation, salary);
+                EmployeeAug18 newEmp = new EmployeeAug18(id, firstName, lastName, designation, salary);
                 employeeAug18Repository.save(newEmp);
             }
             else if (choice.equals("3")) {
@@ -75,9 +69,18 @@ public class CommandLineRunnerImpl0 implements CommandLineRunner {
             else {
                 System.out.println("Please enter valid choice");
             }
-            
         }
+        // input.close();  // if close input here, then it will throw error on commandLineRunner5 when it tries to re-initialize input
 
     }
-
+    
+    public static void printAllEmployees(EmployeeAug18Repository employeeAug18Repository) {
+        List<EmployeeAug18> employees = employeeAug18Repository.findAll();
+        System.out.println(" == Employees ==");
+        for (EmployeeAug18 e : employees) {
+            System.out.println(e.getEmpId() + " " + e.getFirstName() + " " + e.getLastName() + " " + e.getDesignation() + " " + e.getSalary());
+        }
+        System.out.println();
+    }
+    
 }

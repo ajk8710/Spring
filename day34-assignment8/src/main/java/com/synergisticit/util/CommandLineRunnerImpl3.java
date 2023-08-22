@@ -10,20 +10,21 @@ import org.springframework.stereotype.Component;
 import com.synergisticit.domain.EmployeeAug18;
 import com.synergisticit.repository.EmployeeAug18Repository;
 
-@Order(value=1)
+@Order(value=3)
 @Component
-public class CommandLineRunnerImpl1 implements CommandLineRunner {
+public class CommandLineRunnerImpl3 implements CommandLineRunner {
     
     @Autowired EmployeeAug18Repository employeeAug18Repository;
-
+    
     @Override
     public void run(String... args) throws Exception {
-        List<EmployeeAug18> employees = employeeAug18Repository.findAll();
-        System.out.println(" == Employees ==");
-        for (EmployeeAug18 e : employees) {
+        // Find the employees sorted on ascending order of their firstName
+        List<EmployeeAug18> empsSortedByFirstNameAsc = employeeAug18Repository.findByOrderByFirstNameAsc();
+        System.out.println(" == Employees Sorted by Firstname Ascending ==");
+        for (EmployeeAug18 e : empsSortedByFirstNameAsc) {
             System.out.println(e.getEmpId() + " " + e.getFirstName() + " " + e.getLastName() + " " + e.getDesignation() + " " + e.getSalary());
         }
         System.out.println();
     }
-
+    
 }
