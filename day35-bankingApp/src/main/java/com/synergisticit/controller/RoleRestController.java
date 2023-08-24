@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.synergisticit.domain.Role;
 import com.synergisticit.service.RoleService;
+import com.synergisticit.validation.RoleValidator;
 
 import jakarta.validation.Valid;
 
@@ -22,6 +23,7 @@ import jakarta.validation.Valid;
 public class RoleRestController {
     
     @Autowired RoleService roleService;
+    @Autowired RoleValidator roleValidator;
     
     // http://localhost:8080/role?roleId=1
     @RequestMapping(value="role", method=RequestMethod.GET)
@@ -51,7 +53,9 @@ public class RoleRestController {
      */
     @RequestMapping(value="role/create", method=RequestMethod.POST)
     public ResponseEntity<?> createRole(@Valid @RequestBody Role role, BindingResult br) {
-        long roleId = role.getRoleId();
+        roleValidator.validate(role, br);
+        
+        Long roleId = role.getRoleId();
         if (roleService.existById(roleId)) {
             return new ResponseEntity<String>("Role already exists with id=" + roleId, HttpStatus.FOUND);
         }
@@ -69,9 +73,32 @@ public class RoleRestController {
         }
     }
     
+    // http://localhost:8080/role/update - save if id already exists
+    @RequestMapping(value="role/update", method=RequestMethod.PUT)
+    public ResponseEntity<?> updateRole(@Valid @RequestBody Role role, BindingResult br) {
+        roleValidator.validate(role, br);
+        
+        Long roleId = role.getRoleId();
+        if (!roleService.existById(roleId)) {
+            return new ResponseEntity<String>("Role does not exist with id=" + roleId, HttpStatus.NOT_FOUND);
+        }
+        else if (br.hasFieldErrors()) {
+            String errorMessage = "Invalid input for following properties:\n";
+            List<FieldError> fieldErrors = br.getFieldErrors();
+            for (FieldError f : fieldErrors) {
+                errorMessage += f.getField() + ": " + f.getDefaultMessage() + "\n";
+            }
+            return new ResponseEntity<String>(errorMessage, HttpStatus.OK);
+        }
+        else {
+            roleService.saveRole(role);
+            return new ResponseEntity<Role>(role, HttpStatus.ACCEPTED);
+        }
+    }
+    
     // http://localhost:8080/role/delete?roleId=10
     @RequestMapping(value="role/delete", method=RequestMethod.DELETE)
-    public ResponseEntity<String> deleteRoleById(@RequestParam long roleId) {
+    public ResponseEntity<String> deleteRoleById(@RequestParam Long roleId) {
         if (roleService.existById(roleId)) {
             roleService.deleteRoleById(roleId);
             return new ResponseEntity<String>("Role deleted with id=" + roleId, HttpStatus.ACCEPTED);
@@ -80,4 +107,5 @@ public class RoleRestController {
             return new ResponseEntity<String>("Role does not exist with id=" + roleId, HttpStatus.NOT_FOUND);
         }
     }
+    
 }
