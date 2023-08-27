@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +46,7 @@ public class Customer {
     
     private String realId;
     
+    @JsonBackReference
     @OneToMany(mappedBy="accountCustomer")
     private List<Account> customerAccounts = new ArrayList<>();
     
