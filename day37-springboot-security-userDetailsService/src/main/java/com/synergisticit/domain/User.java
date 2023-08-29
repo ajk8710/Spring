@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,7 +48,7 @@ public class User {
     private String mobile;
     
     // @NotEmpty
-    @ManyToMany  // Many to Many relationship
+    @ManyToMany(fetch=FetchType.EAGER)  // Many to Many relationship  // EAGER means available without asking
     @JoinTable(name="user_role36",  // creates join table
         joinColumns = {@JoinColumn(name="userid")},
         inverseJoinColumns = {@JoinColumn(name="roleId")}

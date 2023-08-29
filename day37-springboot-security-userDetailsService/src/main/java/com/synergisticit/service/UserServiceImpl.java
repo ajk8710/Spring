@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
     
     @Override
     public User save(User user) {
+        // use bCrypt to encrypt password while saving
         String encryptedPassword = bCrypt.encode(user.getPassword());
         user.setPassword(encryptedPassword);
         return userRepository.save(user);

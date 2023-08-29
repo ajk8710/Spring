@@ -25,6 +25,7 @@ public class SecurityConfig {
     @Autowired BCryptPasswordEncoder bCrypt;
     @Autowired UserDetailsService userDetailsService;
     
+    /*
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {  // this only exists in memory, not db
         
@@ -62,15 +63,23 @@ public class SecurityConfig {
         
         return new InMemoryUserDetailsManager(users);
     }
+    */
     
     /*
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         
-        http.authorizeHttpRequests().anyRequest().permitAll();  // this allows to bypass all security features
+        http.authorizeHttpRequests().anyRequest().permitAll();  // this allows to bypass all http security
         return http.build();
     }
     */
-
     
+    @Bean
+    DaoAuthenticationProvider authProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(bCrypt);
+        return authProvider;
+    }
+
 }

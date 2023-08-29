@@ -20,14 +20,14 @@
 
 <body>
 <div align="center">
-<h1>Employee Management Form</h1>
+<h1>User Form</h1>
 
-<br>Logged-in User: ${pageContext.request.userPrincipal.name}<br>
-<br>User Principal: ${pageContext.request.userPrincipal}<br>
+Logged-in User: ${pageContext.request.userPrincipal.name}<br>
+<%-- <br>User Principal: ${pageContext.request.userPrincipal}<br> --%>
 
-<%-- <br><strong>Authorities: <sec:authentication property="principal.authorities"/></strong><br> --%>
+<strong>Authorities: <sec:authentication property="principal.authorities"/></strong><br>
 
-<a href="logout">Log Out</a>
+<a href="logout">Log Out</a><br><br>
 
 <f:form action="saveUser" method="post" modelAttribute="user">  <!-- modelAttribute is name of class starting with lower case -->
 <table>
@@ -126,7 +126,8 @@
 
 <c:if test="${not empty users}">
     <table border="1">
-        <thead><tr> <td>ID</td> <td>Name</td> <td>Password</td> <td>Email</td> <td>Mobile</td> <td>Roles</td> <td>Action</td> </tr></thead>
+        <thead><tr> <td>ID</td> <td>Name</td> <td>Password</td> <td>Email</td> <td>Mobile</td> <td>Roles</td> 
+        <sec:authorize access="hasAuthority('Admin')"> <td>Action</td> </sec:authorize> </tr></thead>
 
         <c:forEach items="${users}" var="u">
             <tr>
@@ -137,7 +138,9 @@
                 </c:forEach>
             </td>
             
+            <sec:authorize access="hasAuthority('Admin')">
             <td> <a href="updateUser?userId=${u.userId}"> Update </a> | <a href="deleteUser?userId=${u.userId}"> Delete </a> </td>
+            </sec:authorize>
             </tr>
         </c:forEach>
     </table>

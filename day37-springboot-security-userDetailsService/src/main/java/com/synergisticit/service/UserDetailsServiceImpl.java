@@ -17,22 +17,27 @@ import com.synergisticit.domain.User;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     
+    // co-relate my UserService with Sprnig's UserDetailsService
     @Autowired UserService userService;
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("UserDetailsServiceImpl - loadUserByUsername has been called");
+        // when spring loadUserByUsername is called, find my user with username on my db
         
+        // this is my user, not spring user
         User user = userService.findUserByUsername(username);
         System.out.println(user.getUsername());
         
+        // add user's roles to authority
         Collection<GrantedAuthority> authorities = new HashSet<>();
         for (Role role: user.getRoles()) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
-            System.out.println();
+            System.out.println("Role: " + role.getName());
         }
         
-        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), null);
+        // return spring user
+        return new org.springframework.security.core.userdetails.User(username, user.getPassword(), authorities);
     }
 
 }

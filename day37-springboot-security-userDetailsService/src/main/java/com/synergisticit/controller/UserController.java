@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +28,15 @@ public class UserController {
     @RequestMapping("userForm")
     public String userForm(User user, Model model) {
         modelData(model);
+        
+        // Retrieving current logged-in user info
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Credentials: " + auth.getCredentials());  // prints null. password removed for security as soon as logged-in.
+        System.out.println("Authorities: " + auth.getAuthorities());
+        System.out.println("Details: " + auth.getDetails());  // prints sessionId. If sessionId is the same, user is not required to log in.
+        System.out.println("Name: " + auth.getName());
+        System.out.println("Principal: " + auth.getPrincipal());
+        
         return "userForm";
     }
     
