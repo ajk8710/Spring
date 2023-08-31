@@ -94,7 +94,7 @@ public class CustomerRestController {
         
         Long customerId = customer.getCustomerId();
         if (!customerService.existById(customerId)) {
-            return new ResponseEntity<String>("Customer does not exist with id=" + customerId, HttpStatus.FOUND);
+            return new ResponseEntity<String>("Customer does not exist with id=" + customerId, HttpStatus.NOT_FOUND);
         }
         else if (br.hasFieldErrors()) {
             String errorMessage = "Invalid input for following properties:\n";
@@ -105,7 +105,7 @@ public class CustomerRestController {
         }
         else {
             customerService.saveCustomer(customer);
-            return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
+            return new ResponseEntity<Customer>(customer, HttpStatus.ACCEPTED);
         }
     }
     

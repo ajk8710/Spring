@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -46,10 +48,14 @@ public class Customer {
     
     private String realId;
     
-    @JsonBackReference
+    @JsonIgnore
+    // @JsonBackReference
+    // @JsonManagedReference
     @OneToMany(mappedBy="accountCustomer")
     private List<Account> customerAccounts = new ArrayList<>();
     
+    @JsonIgnore
+    // @JsonBackReference
     @JoinColumn(name="userId")
     @OneToOne
     private User user;
