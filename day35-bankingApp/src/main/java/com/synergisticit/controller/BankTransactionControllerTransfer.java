@@ -37,7 +37,7 @@ public class BankTransactionControllerTransfer {
             Account fromAccount = accountService.getAccountById(bankTransaction.getBankTransactionFromAccount());
             Account toAccount = accountService.getAccountById(bankTransaction.getBankTransactionToAccount());
             double transferAmount = bankTransaction.getTransactionAmount();
-            fromAccount.setAccountBalance(fromAccount.getAccountBalance() - transferAmount);  // validator checks for balance > amount
+            fromAccount.setAccountBalance(fromAccount.getAccountBalance() - transferAmount);  // validator checks for balance >= amount
             toAccount.setAccountBalance(toAccount.getAccountBalance() + transferAmount);
             accountService.saveAccount(fromAccount);
             accountService.saveAccount(toAccount);

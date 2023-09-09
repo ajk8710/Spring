@@ -36,7 +36,7 @@ public class BankTransactionControllerWithdrawal {
         if (!br.hasErrors()) {  // update account for withdrawal and save transaction for record.
             Account fromAccount = accountService.getAccountById(bankTransaction.getBankTransactionFromAccount());
             double withdrawalAmount = bankTransaction.getTransactionAmount();
-            fromAccount.setAccountBalance(fromAccount.getAccountBalance() - withdrawalAmount);  // validator checks for balance > amount
+            fromAccount.setAccountBalance(fromAccount.getAccountBalance() - withdrawalAmount);  // validator checks for balance >= amount
             accountService.saveAccount(fromAccount);
             bankTransactionService.saveBankTransaction(bankTransaction);
             
