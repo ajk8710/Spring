@@ -2,6 +2,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- tag library provided by JSP JSTL -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %> <!-- tag library provided by spring -->
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> <!-- tag library provided by spring security-->
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +22,11 @@
 <div align="center">
 <h1>User Management Form</h1>
 
+<strong>Logged-in User: ${pageContext.request.userPrincipal.name}</strong><br>
+<%-- <br>User Principal: ${pageContext.request.userPrincipal}<br> --%>
+User Role: <sec:authentication property="principal.authorities"/><br>
+<a href="logout">Log Out</a><br><br>
+
 <f:form action="saveUser" method="post" modelAttribute="user">  <!-- modelAttribute is name of class starting with lower case -->
 <table>
 
@@ -38,7 +44,7 @@
     
     <tr>
     <td> <b>Password:</b> </td>
-    <td> <f:input path="password" value="${retrievedUser.password}"/> </td>
+    <td> <f:input path="password"/> </td>
     <td> <f:errors path="password" cssClass="error"/> </td>
     </tr>
     
@@ -94,11 +100,11 @@
 
 <c:if test="${not empty users}">
     <table border="1">
-        <thead><tr> <td>ID</td> <td>Username</td> <td>Password</td> <td>Roles</td> <td>Action</td> </tr></thead>
+        <thead><tr> <td>ID</td> <td>Username</td> <!-- <td>Password</td> --> <td>Roles</td> <td>Action</td> </tr></thead>
 
         <c:forEach items="${users}" var="u">
             <tr>
-            <td>${u.userId}</td> <td>${u.username}</td> <td>${u.password}</td>
+            <td>${u.userId}</td> <td>${u.username}</td> <%-- <td>${u.password}</td> --%>
             <td>
                 <c:forEach items="${u.roles}" var="r">
                     ${r.roleName}

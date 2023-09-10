@@ -14,7 +14,7 @@ import com.synergisticit.validation.RoleValidator;
 import jakarta.validation.Valid;
 
 @Controller
-public class RollController {
+public class RoleController {
     
     @Autowired RoleService roleService;
     @Autowired RoleValidator roleValidator;
