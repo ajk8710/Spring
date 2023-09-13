@@ -100,11 +100,11 @@ User Role: <sec:authentication property="principal.authorities"/><br>
 
 <c:if test="${not empty users}">
     <table border="1">
-        <thead><tr> <td>ID</td> <td>Username</td> <!-- <td>Password</td> --> <td>Roles</td> <td>Action</td> </tr></thead>
+        <thead><tr> <td>ID</td> <td>Username</td> <td>Password</td> <td>Roles</td> <td>Action</td> </tr></thead>
 
         <c:forEach items="${users}" var="u">
             <tr>
-            <td>${u.userId}</td> <td>${u.username}</td> <%-- <td>${u.password}</td> --%>
+            <td>${u.userId}</td> <td>${u.username}</td> <td>${u.password}</td>
             <td>
                 <c:forEach items="${u.roles}" var="r">
                     ${r.roleName}
