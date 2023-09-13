@@ -24,7 +24,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Role {
     
     @NotNull  // There is no NotEmpty for int value

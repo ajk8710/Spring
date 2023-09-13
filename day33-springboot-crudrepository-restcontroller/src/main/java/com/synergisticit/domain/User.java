@@ -23,7 +23,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class User {
     
     @NotNull  // @NotNull is needed even if @Id is present. @NotNull is for validation purposes and @ID is for db purposes
