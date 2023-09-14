@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>== Role Form ==</title>
+    <title>Role Form</title>
     <style>
         .error{
             color:red;
@@ -38,7 +38,7 @@
     </tr>
 
     <tr>
-    <td colspan="2" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
     </tr>
 
 </table>

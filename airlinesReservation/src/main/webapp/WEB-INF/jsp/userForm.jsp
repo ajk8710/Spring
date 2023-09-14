@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>== User Form ==</title>
+    <title>User Form</title>
     <style>
         .error{
             color:red;
@@ -87,7 +87,7 @@
 -->
 
     <tr>
-    <td colspan="2" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
     </tr>
 
 </table>
