@@ -35,11 +35,11 @@ public class AppConfig {
     }
     
     Properties jpaProperties() {  // set up hibernate properties
-        Properties jpaProerties = new Properties();
-        jpaProerties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        jpaProerties.setProperty("hibernate.show_SQL", "true");
-        jpaProerties.setProperty("hibernate.hbm2ddl.auto", "update");
-        return jpaProerties;
+        Properties jpaProperties = new Properties();
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        jpaProperties.setProperty("hibernate.show_SQL", "true");
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+        return jpaProperties;
     }
     
     @Bean  // Bean must be named entityManagerFactory

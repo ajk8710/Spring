@@ -44,9 +44,9 @@ public class Flight {
     private LocalDate departureDate;
     
     @DateTimeFormat(iso = ISO.TIME)
-    private LocalTime depatureTime;
+    private LocalTime departureTime;
     
     @ManyToOne  // there are many flight on one airline
-    private Airlines operatingAirline;
+    private Airlines operatingAirlines;
     
 }
