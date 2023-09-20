@@ -53,8 +53,11 @@ public class FlightController {
         Airlines selectedAirlines = retrievedFlight.getOperatingAirlines();
         model.addAttribute("selectedAirlines", selectedAirlines);
         
-//        Airport selectedDepatureAirport = retrievedFlight.getdepartureairport
-//        model.addAttribute("selectedDepatureAirport", selectedDepatureAirport);
+        Airport selectedDepartureCity = retrievedFlight.getDepartureCity();
+        model.addAttribute("selectedDepartureCity", selectedDepartureCity);
+        
+        Airport selectedArrivalCity = retrievedFlight.getArrivalCity();
+        model.addAttribute("selectedArrivalCity", selectedArrivalCity);
         
         modelData(model);
         return "flightForm";

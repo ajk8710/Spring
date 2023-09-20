@@ -51,7 +51,7 @@
         <c:forEach items="${roles}" var="r">
             <tr>
             <td>${r.roleId}</td> <td>${r.roleName}</td>
-            <td> <a href="updateRole?roleId=${r.roleId}"> Update </a> | <a href="deleteRole?roleId=${r.roleId}"> Delete </a> </td>
+            <td> <a href="${pageContext.request.contextPath}/updateRole?roleId=${r.roleId}"> Update </a> | <a href="${pageContext.request.contextPath}/deleteRole?roleId=${r.roleId}"> Delete </a> </td>
             </tr>
         </c:forEach>
     </table>

@@ -105,7 +105,7 @@
                     ${r.roleName}
                 </c:forEach>
             </td>
-            <td> <a href="updateUser?userId=${u.userId}"> Update </a> | <a href="deleteUser?userId=${u.userId}"> Delete </a> </td>
+            <td> <a href="${pageContext.request.contextPath}/updateUser?userId=${u.userId}"> Update </a> | <a href="${pageContext.request.contextPath}/deleteUser?userId=${u.userId}"> Delete </a> </td>
             </tr>
         </c:forEach>
     </table>

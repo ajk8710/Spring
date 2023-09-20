@@ -10,8 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,11 +28,13 @@ public class Flight {
     
     private String flightNum;
     
-    @NotEmpty
-    private String departureCity;
+    // @JoinColumn(name="airportId")  // causes error due to duplicate join column
+    @ManyToOne  // there are many departure flight on one airport
+    private Airport departureCity;
     
-    @NotEmpty
-    private String arrivalCity;
+    // @JoinColumn(name="airportId")  // causes error due to duplicate join column
+    @ManyToOne  // there are many arrival flight on one airport
+    private Airport arrivalCity;
     
     private Double ticketPrice;
     
@@ -46,6 +48,7 @@ public class Flight {
     @DateTimeFormat(iso = ISO.TIME)
     private LocalTime departureTime;
     
+    @JoinColumn(name="airlinesId")  // not required, it's joined by primary key by default
     @ManyToOne  // there are many flight on one airline
     private Airlines operatingAirlines;
     

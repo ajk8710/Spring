@@ -102,7 +102,7 @@
             <tr>
             <td>${p.passengerId}</td> <td>${p.firstName}</td> <td>${p.lastName}</td> <td>${p.email}</td>
             <td>${p.phone}</td> <td>${p.gender}</td> <td>${p.dob}</td> <td>${p.identificationType}</td>
-            <td> <a href="updatePassenger?passengerId=${p.passengerId}"> Update </a> | <a href="deletePassenger?passengerId=${p.passengerId}"> Delete </a> </td>
+            <td> <a href="${pageContext.request.contextPath}/updatePassenger?passengerId=${p.passengerId}"> Update </a> | <a href="${pageContext.request.contextPath}/deletePassenger?passengerId=${p.passengerId}"> Delete </a> </td>
             </tr>
         </c:forEach>
     </table>

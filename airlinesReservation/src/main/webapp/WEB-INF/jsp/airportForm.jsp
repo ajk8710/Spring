@@ -60,7 +60,7 @@
         <c:forEach items="${airports}" var="a">
             <tr>
             <td>${a.airportId}</td> <td>${a.airportCity}</td> <td>${a.airportCode}</td>
-            <td> <a href="updateAirport?airportId=${a.airportId}"> Update </a> | <a href="deleteAirport?airportId=${a.airportId}"> Delete </a> </td>
+            <td> <a href="${pageContext.request.contextPath}/updateAirport?airportId=${a.airportId}"> Update </a> | <a href="${pageContext.request.contextPath}/deleteAirport?airportId=${a.airportId}"> Delete </a> </td>
             </tr>
         </c:forEach>
     </table>

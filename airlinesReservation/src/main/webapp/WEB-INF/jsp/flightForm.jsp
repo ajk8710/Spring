@@ -37,21 +37,13 @@
     <td> <f:errors path="flightNum" cssClass="error"/> </td>
     </tr>
     
-<%--
-    <tr>
-    <td> <b>Departure City:</b> </td>
-    <td> <f:input path="departureCity" value="${retrievedFlight.departureCity}"/> </td>
-    <td> <f:errors path="departureCity" cssClass="error"/> </td>
-    </tr>
---%>
-    
     <tr>
     <td> <b>Departure City:</b> </td>
     <td>
     <f:select path="departureCity">
         <c:forEach items="${airports}" var="a">
                 <c:choose>
-                    <c:when test="${selectedDepatureAirport.equals(a)}">
+                    <c:when test="${selectedDepartureCity.equals(a)}">
                         <f:option value="${a.airportId}" label="${a.airportCity}" selected="true"></f:option>
                     </c:when>
                     <c:otherwise>
@@ -64,21 +56,13 @@
     <td> <f:errors path="departureCity" cssClass="error"/> </td>
     </tr>
     
-<%--
-    <tr>
-    <td> <b>Arrival City:</b> </td>
-    <td> <f:input path="arrivalCity" value="${retrievedFlight.arrivalCity}"/> </td>
-    <td> <f:errors path="arrivalCity" cssClass="error"/> </td>
-    </tr>
---%>
-
     <tr>
     <td> <b>Arrival City:</b> </td>
     <td>
     <f:select path="arrivalCity">
         <c:forEach items="${airports}" var="a">
                 <c:choose>
-                    <c:when test="${selectedArrivialAirport.equals(a)}">
+                    <c:when test="${selectedArrivalCity.equals(a)}">
                         <f:option value="${a.airportId}" label="${a.airportCity}" selected="true"></f:option>
                     </c:when>
                     <c:otherwise>
@@ -150,14 +134,18 @@
 <c:if test="${not empty flights}">
     <table border="1">
         <thead><tr>
-            <td>ID</td> <td>Flight Number</td>
+            <td>ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
+            <td>Price</td> <td>Capacity</td> <td>Booked</td> <td>Date</td>
+            <td>Time</td> <td>Airlines</td>
             <td>Action</td>
         </tr></thead>
 
         <c:forEach items="${flights}" var="f">
             <tr>
-            <td>${f.flightId}</td> <td>${f.flightNum}</td>
-            <td> <a href="updateFlight?flightId=${f.flightId}"> Update </a> | <a href="deleteFlight?flightId=${f.flightId}"> Delete </a> </td>
+            <td>${f.flightId}</td> <td>${f.flightNum}</td> <td>${f.departureCity.airportCity}</td> <td>${f.arrivalCity.airportCity}</td>
+            <td>${f.ticketPrice}</td> <td>${f.capacity}</td> <td>${f.booked}</td> <td>${f.departureDate}</td>
+            <td>${f.departureTime}</td> <td>${f.operatingAirlines.airlinesName}</td>
+            <td> <a href="${pageContext.request.contextPath}/updateFlight?flightId=${f.flightId}"> Update </a> | <a href="${pageContext.request.contextPath}/deleteFlight?flightId=${f.flightId}"> Delete </a> </td>
             </tr>
         </c:forEach>
     </table>

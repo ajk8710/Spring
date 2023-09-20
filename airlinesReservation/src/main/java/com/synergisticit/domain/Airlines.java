@@ -3,6 +3,8 @@ package com.synergisticit.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +28,8 @@ public class Airlines {
     
     private String airlinesCode;
     
-    @OneToMany  // one airlines has many flights
+    @JsonIgnore  // JsonIgnore for rest controller
+    @OneToMany(mappedBy="operatingAirlines")  // one airlines has many flights
     private List<Flight> flights = new ArrayList<>();
     
 }
