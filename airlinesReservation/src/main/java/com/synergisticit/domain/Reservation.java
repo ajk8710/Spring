@@ -34,7 +34,7 @@ public class Reservation {
     @OneToOne  // one reservation has one flight
     private Flight flight;
     
-    private Boolean checkedIn;
+    private Boolean checkedIn = false;  // by default is false
     
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate issuedDate;
