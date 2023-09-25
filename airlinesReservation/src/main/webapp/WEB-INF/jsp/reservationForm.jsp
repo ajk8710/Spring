@@ -74,6 +74,10 @@
     <td> <f:input type="date" path="issuedDate" value="<%=java.time.LocalDate.now()%>"/> </td>
     <td> <f:errors path="issuedDate" cssClass="error"/> </td>
     </tr>
+    
+    <tr>
+    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
+    </tr>
 
 </table>
 </f:form>
@@ -90,7 +94,7 @@
         <c:forEach items="${reservations}" var="r">
             <tr>
             <td>${r.ticketNum}</td> <td>${r.passenger.passengerId}</td> <td>${r.passenger.firstName}</td> <td>${r.passenger.lastName}</td>
-            <td>${r.flight.flightId}</td> <td>${r.flight.flightNum}</td> <td>${r.flight.departureCity}</td> <td>${r.flight.arrivalCity}</td>
+            <td>${r.flight.flightId}</td> <td>${r.flight.flightNum}</td> <td>${r.flight.departureCity.airportCity}</td> <td>${r.flight.arrivalCity.airportCity}</td>
             <td>${r.checkedIn}</td> <td>${r.issuedDate}</td>
             <td> <a href="${pageContext.request.contextPath}/updateReservation?ticketNum=${r.ticketNum}"> Update </a> | <a href="${pageContext.request.contextPath}/deleteReservation?ticketNum=${r.ticketNum}"> Delete </a> </td>
             </tr>

@@ -1,9 +1,13 @@
 package com.synergisticit.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +15,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,5 +45,9 @@ public class Passenger {
     
     @Enumerated(EnumType.STRING)  // without it, it goes for index number of enum
     private IdentificationType identificationType;
+    
+    @JsonIgnore  // JsonIgnore for rest controller
+    @OneToMany(mappedBy="passenger")  // mapped by Reservations's passenger attribute
+    private List<Reservation> reservationsOfPassenger = new ArrayList<>();
     
 }

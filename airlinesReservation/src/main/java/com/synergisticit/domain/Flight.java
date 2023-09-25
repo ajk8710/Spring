@@ -2,9 +2,13 @@ package com.synergisticit.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -51,5 +56,9 @@ public class Flight {
     @JoinColumn(name="airlinesId")  // not required, it's joined by primary key by default
     @ManyToOne  // there are many flight on one airline
     private Airlines operatingAirlines;
+    
+    @JsonIgnore  // JsonIgnore for rest controller
+    @OneToMany(mappedBy="flight")  // mapped by Reservation's flight attribute
+    private List<Reservation> reservationsOfFlight = new ArrayList<>();
     
 }
