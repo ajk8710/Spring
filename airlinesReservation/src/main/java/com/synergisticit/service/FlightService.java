@@ -10,4 +10,6 @@ public interface FlightService {
     List<Flight> getAll();
     void deleteById(Long id);
     boolean existById(Long id);
+    
+    List<Flight> findByDepartureIdAndArrivalId(long departureId, long arrivalId);
 }

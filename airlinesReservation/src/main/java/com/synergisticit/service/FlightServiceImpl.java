@@ -43,4 +43,9 @@ public class FlightServiceImpl implements FlightService {
         return flightRepository.existsById(id);
     }
 
+    @Override
+    public List<Flight> findByDepartureIdAndArrivalId(long departureId, long arrivalId) {
+        return flightRepository.findByDepartureCity_airportIdAndArrivalCity_airportId(departureId, arrivalId);
+    }
+
 }
