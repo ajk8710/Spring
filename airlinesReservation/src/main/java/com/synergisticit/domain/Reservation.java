@@ -39,4 +39,12 @@ public class Reservation {
     @DateTimeFormat(iso = ISO.DATE)
     private LocalDate issuedDate;
     
+    // constructor without id: id to be filled in by JpaRepository's save method (auto increment)
+    public Reservation(Passenger passenger, Flight flight, Boolean checkedIn, LocalDate issuedDate) {
+        this.passenger = passenger;
+        this.flight = flight;
+        this.checkedIn = checkedIn;
+        this.issuedDate = issuedDate;
+    }
+    
 }

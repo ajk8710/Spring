@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Flight Search</title>
+    <title>Find Your Trip</title>
     <style>
         .error{
             color:red;
@@ -20,7 +20,7 @@
 <div align="center">
 
 <%@ include file="menu.jsp" %>
-<h1>Flight Search</h1>
+<h1>Find Your Trip</h1>
 
 <f:form action="flightSearchResults" method="get" modelAttribute="flight">  <!-- modelAttribute is name of class starting with lower case -->
 <table>
@@ -75,7 +75,7 @@
         <thead><tr>
             <td>ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
             <td>Price</td> <td>Capacity</td> <td>Booked</td> <td>Date</td>
-            <td>Time</td> <td>Airlines</td>
+            <td>Time</td> <td>Airlines</td> <td>Reserve</td>
         </tr></thead>
 
         <c:forEach items="${listOfSearchedFlights}" var="f">
@@ -83,6 +83,7 @@
             <td>${f.flightId}</td> <td>${f.flightNum}</td> <td>${f.departureCity.airportCity}</td> <td>${f.arrivalCity.airportCity}</td>
             <td>${f.ticketPrice}</td> <td>${f.capacity}</td> <td>${f.booked}</td> <td>${f.departureDate}</td>
             <td>${f.departureTime}</td> <td>${f.operatingAirlines.airlinesName}</td>
+            <td><a href="${pageContext.request.contextPath}/flightReservation?flightId=${f.flightId}"> Reserve </a></td>
             </tr>
         </c:forEach>
     </table>
