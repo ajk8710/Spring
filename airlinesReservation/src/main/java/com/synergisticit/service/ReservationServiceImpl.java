@@ -43,4 +43,9 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationRepository.existsById(id);
     }
 
+    @Override
+    public List<Reservation> findByPassengerId(long passengerId) {
+        return reservationRepository.findByPassenger_passengerId(passengerId);
+    }
+
 }

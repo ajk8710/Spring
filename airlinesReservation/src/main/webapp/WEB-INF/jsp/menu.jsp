@@ -17,6 +17,7 @@
 <table>
 <tr>
 <td><a href="${pageContext.request.contextPath}/flightSearch">Find Your Trip</a></td>
+<td><a href="${pageContext.request.contextPath}/myReservations">My Trips</a></td>
 </tr>
 </table>
 </div>

@@ -10,4 +10,6 @@ public interface ReservationService {
     List<Reservation> getAll();
     void deleteById(Long id);
     boolean existById(Long id);
+    
+    List<Reservation> findByPassengerId(long passengerId);
 }

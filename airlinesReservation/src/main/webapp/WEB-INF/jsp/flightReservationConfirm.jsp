@@ -25,6 +25,7 @@
 <c:when test="${reservationSuccess}">
 
     <h1>Reservation Confirmation</h1>
+    Your Reservation details below. Thank you.<br>
     
     <br>
     <c:if test="${not empty retrievedPassenger}">
