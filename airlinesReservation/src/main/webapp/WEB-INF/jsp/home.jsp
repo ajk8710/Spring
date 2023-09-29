@@ -13,7 +13,12 @@
 <div align="center">
 
 <%@ include file="menu.jsp" %>
+
 <h1>Home</h1>
+<sec:authorize access="!isAuthenticated()">
+<a href="login">Log In</a>
+</sec:authorize>
+
 <%@ include file="footer.jsp" %>
 
 </div>
