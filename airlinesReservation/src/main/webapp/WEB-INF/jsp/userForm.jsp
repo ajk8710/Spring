@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>User Form</title>
     <style>
         .error{
@@ -18,9 +18,10 @@
 </head>
 
 <body>
+<%@ include file="menu.jsp" %>
+
 <div align="center">
 
-<%@ include file="menu.jsp" %>
 <h1>User Form</h1>
 
 <f:form action="saveUser" method="post" modelAttribute="user">  <!-- modelAttribute is name of class starting with lower case -->
@@ -94,6 +95,7 @@
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty users}">
     <table border="1" class="table table-striped">
         <thead><tr> <td>ID</td> <td>Username</td> <td>Password</td> <td>Roles</td> <td>Action</td> </tr></thead>
@@ -111,9 +113,11 @@
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>
