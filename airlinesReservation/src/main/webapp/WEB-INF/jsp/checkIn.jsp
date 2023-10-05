@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Check In</title>
     <style>
         .error{
@@ -17,10 +18,11 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
 
+<div align="center">
+
+<div class=container-md>
 <c:choose>
 <c:when test="${checkInSuccess}">
 
@@ -28,7 +30,7 @@
     Your flight details below. Thank you.<br>
         
     <br>
-    <table border="1">
+    <table border="1" class="table table-striped">
     <thead><tr>
         <td>Ticket Number</td> <td>Passenger ID</td> <td>First Name</td> <td>Last Name</td>
         <td>Flight ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
@@ -46,9 +48,11 @@
     <h1>Sorry, online check in was not successful. Please contact us.</h1>
 </c:otherwise>
 </c:choose>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

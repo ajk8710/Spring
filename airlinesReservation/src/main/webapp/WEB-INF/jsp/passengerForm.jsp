@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Passenger Form</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 <h1>Passenger Form</h1>
 
 <f:form action="savePassenger" method="post" modelAttribute="passenger">  <!-- modelAttribute is name of class starting with lower case -->
@@ -73,10 +74,10 @@
         <c:forEach items="${identificationTypes}" var="t">
             <c:choose>
                 <c:when test="${retrievedPassenger.identificationType.equals(t)}">
-                    <f:radiobutton path="identificationType" value="${t}" label="${t}" checked="true"></f:radiobutton>
+                    <f:radiobutton path="identificationType" value="${t}" label="${t}" checked="true" class="form-check-input"></f:radiobutton>
                 </c:when>
                 <c:otherwise>
-                    <f:radiobutton path="identificationType" value="${t}" label="${t}"></f:radiobutton>
+                    <f:radiobutton path="identificationType" value="${t}" label="${t}" class="form-check-input"></f:radiobutton>
                 </c:otherwise>
             </c:choose>
         </c:forEach>
@@ -85,14 +86,15 @@
     </tr>
 
     <tr>
-    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Submit" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty passengers}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>ID</td> <td>First Name</td> <td>Last Name</td> <td>Email</td> 
             <td>Phone</td> <td>Gender</td> <td>DOB</td> <td>ID Type</td> <td>Action</td>
@@ -107,9 +109,11 @@
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

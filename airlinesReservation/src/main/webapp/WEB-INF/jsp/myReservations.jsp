@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>My Trips</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 <h1>My Trips</h1>
 
 <f:form action="passengersReservations" method="get" modelAttribute="passenger">  <!-- modelAttribute is name of class starting with lower case -->
@@ -28,7 +29,7 @@
     <tr>
     <td> <b>Passenger:</b> </td>
     <td>
-    <f:select path="passengerId">
+    <f:select path="passengerId" class="form-select">
         <c:forEach items="${passengers}" var="p">
                 <c:choose>
                     <c:when test="${selectedPassenger.equals(p)}">
@@ -45,16 +46,17 @@
     </tr>
     
     <tr>
-    <td colspan="3" align="center"> <input type="submit" value="Select"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Select" class="btn btn-primary"/> </td>
     </tr>
     
 </table>
 </f:form>
 
 <br>
+<div class=container-md>
 <c:choose>
 <c:when test="${not empty reservationsOfPassenger}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>Ticket Number</td> <td>Passenger ID</td> <td>First Name</td> <td>Last Name</td>
             <td>Flight ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
@@ -78,9 +80,11 @@
     </c:if>
 </c:otherwise>
 </c:choose>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

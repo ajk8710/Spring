@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Flight Form</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 <h1>Flight Form</h1>
 
 <f:form action="saveFlight" method="post" modelAttribute="flight">  <!-- modelAttribute is name of class starting with lower case -->
@@ -40,7 +41,7 @@
     <tr>
     <td> <b>Departure City:</b> </td>
     <td>
-    <f:select path="departureCity">
+    <f:select path="departureCity" class="form-select">
         <c:forEach items="${airports}" var="a">
                 <c:choose>
                     <c:when test="${selectedDepartureCity.equals(a)}">
@@ -59,7 +60,7 @@
     <tr>
     <td> <b>Arrival City:</b> </td>
     <td>
-    <f:select path="arrivalCity">
+    <f:select path="arrivalCity" class="form-select">
         <c:forEach items="${airports}" var="a">
                 <c:choose>
                     <c:when test="${selectedArrivalCity.equals(a)}">
@@ -108,7 +109,7 @@
     <tr>
     <td> <b>Operating Airlines:</b> </td>
     <td>
-    <f:select path="operatingAirlines">
+    <f:select path="operatingAirlines" class="form-select">
         <c:forEach items="${airlinesList}" var="a">
                 <c:choose>
                     <c:when test="${selectedAirlines.equals(a)}">
@@ -125,14 +126,15 @@
     </tr>
 
     <tr>
-    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Submit" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty flights}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
             <td>Price</td> <td>Capacity</td> <td>Booked</td> <td>Date</td>
@@ -150,9 +152,11 @@
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

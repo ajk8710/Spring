@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Flight Reservation</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 <h1>Save Passenger for Reservation</h1>
 
 <f:form action="savePassengerForReservation" method="post" modelAttribute="passenger">  <!-- modelAttribute is name of class starting with lower case -->
@@ -85,15 +86,16 @@
     </tr>
 
     <tr>
-    <td colspan="3" align="center"> <input type="submit" value="Save Passenger"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Save Passenger" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
 <br>
+<div class=container-md>
 <c:if test="${not empty retrievedPassenger}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>ID</td> <td>First Name</td> <td>Last Name</td> <td>Email</td> 
             <td>Phone</td> <td>Gender</td> <td>DOB</td> <td>ID Type</td> <td>Action</td>
@@ -107,10 +109,11 @@
         </tr>
     </table>
 </c:if>
+</div>
 
 <br>
-
-<table border="1">
+<div class=container-md>
+<table border="1" class="table table-striped">
     <thead><tr>
         <td>ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
         <td>Price</td> <td>Capacity</td> <td>Booked</td> <td>Date</td>
@@ -124,14 +127,16 @@
     <td>${selectedFlight.departureTime}</td> <td>${selectedFlight.operatingAirlines.airlinesName}</td>
     </tr>
 </table>
+</div>
 
 <br>
 <c:if test="${not empty retrievedPassenger && not empty selectedFlight}">
-<td><a href="${pageContext.request.contextPath}/makeReservation?passengerId=${retrievedPassenger.passengerId}&flightId=${selectedFlight.flightId}"> Reserve </a></td>
+<td><a href="${pageContext.request.contextPath}/makeReservation?passengerId=${retrievedPassenger.passengerId}&flightId=${selectedFlight.flightId}" class="btn btn-primary"> Reserve </a></td>
 </c:if>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

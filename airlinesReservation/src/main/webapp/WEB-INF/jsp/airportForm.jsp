@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Airport Form</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 <h1>Airport Form</h1>
 
 <f:form action="saveAirport" method="post" modelAttribute="airport">  <!-- modelAttribute is name of class starting with lower case -->
@@ -44,14 +45,15 @@
     </tr>
 
     <tr>
-    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Submit" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty airports}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>ID</td> <td>Airport City</td> <td>Airport Code</td>
             <td>Action</td>
@@ -65,9 +67,11 @@
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

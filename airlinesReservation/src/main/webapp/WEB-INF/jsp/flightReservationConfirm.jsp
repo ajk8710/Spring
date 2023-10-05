@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Reservation Confirmation</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 
 <c:choose>
 <c:when test="${reservationSuccess}">
@@ -27,9 +28,10 @@
     <h1>Reservation Confirmation</h1>
     Your Reservation details below. Thank you.<br>
     
-    <br>
+    <div class=container-md>
+    <br><img src="icons/person.svg" alt="passenger" width="24" height="24"> <b>Passenger Detail</b> <br>
     <c:if test="${not empty retrievedPassenger}">
-        <table border="1">
+        <table border="1" class="table table-striped">
             <thead><tr>
                 <td>ID</td> <td>First Name</td> <td>Last Name</td> <td>Email</td> 
                 <td>Phone</td> <td>Gender</td> <td>DOB</td> <td>ID Type</td>
@@ -43,8 +45,8 @@
         </table>
     </c:if>
     
-    <br>
-    <table border="1">
+    <br><img src="icons/airplane.svg" alt="flight" width="24" height="24"> <b>Your Flight</b> <br>
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
             <td>Price</td> <td>Capacity</td> <td>Booked</td> <td>Date</td>
@@ -59,8 +61,8 @@
         </tr>
     </table>
     
-    <br>
-    <table border="1">
+    <br><img src="icons/ticket-perforated.svg" alt="ticket" width="24" height="24"> <b>Your Ticket</b> <br>
+    <table border="1" class="table table-striped">
     <thead><tr>
         <td>Ticket Number</td> <td>Passenger ID</td> <td>First Name</td> <td>Last Name</td>
         <td>Flight ID</td> <td>Flight Number</td> <td>Departure</td> <td>Arrival</td>
@@ -72,6 +74,7 @@
     <td>${rsv.checkedIn}</td> <td>${rsv.issuedDate}</td>
     </tr>
     </table>
+    </div>
 
 </c:when>
 <c:otherwise>
@@ -82,5 +85,6 @@
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

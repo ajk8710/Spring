@@ -21,7 +21,6 @@
 <%@ include file="menu.jsp" %>
 
 <div align="center">
-
 <h1>User Form</h1>
 
 <f:form action="saveUser" method="post" modelAttribute="user">  <!-- modelAttribute is name of class starting with lower case -->

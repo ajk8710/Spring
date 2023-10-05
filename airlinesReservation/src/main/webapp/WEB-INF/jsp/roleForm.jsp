@@ -6,6 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Role Form</title>
     <style>
         .error{
@@ -17,9 +18,9 @@
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 <h1>Role Form</h1>
 
 <f:form action="saveRole" method="post" modelAttribute="role">  <!-- modelAttribute is name of class starting with lower case -->
@@ -38,14 +39,15 @@
     </tr>
 
     <tr>
-    <td colspan="3" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="3" align="center"> <input type="submit" value="Submit" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty roles}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr> <td>Role ID</td> <td>Role Name</td> <td>Action</td> </tr></thead>
         
         <c:forEach items="${roles}" var="r">
@@ -56,9 +58,11 @@
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

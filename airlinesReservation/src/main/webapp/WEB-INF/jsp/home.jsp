@@ -6,13 +6,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>Home</title>
 </head>
 
 <body>
-<div align="center">
-
 <%@ include file="menu.jsp" %>
+
+<div align="center">
 
 <h1>Home</h1>
 <sec:authorize access="!isAuthenticated()">
@@ -22,6 +23,7 @@
 <%@ include file="footer.jsp" %>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
