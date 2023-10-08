@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="header.jsp" %>
+<%@ include file="common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +12,7 @@
 <body>
 <div align="center">
 
-<%@ include file="menu.jsp" %>
+<%@ include file="common/menu.jsp" %>
 <h1>Home</h1>
 <img src="images/Grapes.jpg" alt="Grapes" style="height:3m; width:3cm;"/><br>
 
