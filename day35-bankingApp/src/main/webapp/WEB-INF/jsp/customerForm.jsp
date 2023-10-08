@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- tag library provided by JSP JSTL -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %> <!-- tag library provided by spring -->
+<%@ include file="common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>== Customer Form ==</title>
     <style>
         .error{
@@ -18,6 +18,8 @@
 </head>
 
 <body>
+<%@ include file="common/menu.jsp" %>
+
 <div align="center">
 <h1>Customer Management Form</h1>
 
@@ -120,14 +122,15 @@
     </tr>
 
     <tr>
-    <td colspan="2" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="2" align="center"> <input type="submit" value="Submit" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty customers}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr>
             <td>ID</td> <td>Name</td> <td>Gender</td> <td>DOB</td> 
             <td>Mobile</td> <td>Real ID</td> <td>Username</td> <td>City & State</td> <td>Action</td>
@@ -142,7 +145,9 @@
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>

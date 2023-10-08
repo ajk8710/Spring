@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- tag library provided by JSP JSTL -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %> <!-- tag library provided by spring -->
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> <!-- tag library provided by spring security-->
+<%@ include file="common/header.jsp" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <title>== User Form ==</title>
     <style>
         .error{
@@ -19,6 +18,8 @@
 </head>
 
 <body>
+<%@ include file="common/menu.jsp" %>
+
 <div align="center">
 <h1>User Management Form</h1>
 
@@ -57,10 +58,10 @@ User Role: <sec:authentication property="principal.authorities"/><br>
     <c:forEach items="${ListofAllRoles}" var="r">
         <c:choose>
             <c:when test="${selectedRoles.contains(r)}">
-                <f:checkbox path="roles" value="${r.roleId}" label="${r.roleName}" checked="true"/>
+                <f:checkbox path="roles" value="${r.roleId}" label="${r.roleName}" checked="true" class="form-check-input"/>
             </c:when>
             <c:otherwise>
-                <f:checkbox path="roles" value="${r.roleId}" label="${r.roleName}"/>
+                <f:checkbox path="roles" value="${r.roleId}" label="${r.roleName}" class="form-check-input"/>
             </c:otherwise>
         </c:choose>
     </c:forEach>
@@ -92,14 +93,15 @@ User Role: <sec:authentication property="principal.authorities"/><br>
 -->
 
     <tr>
-    <td colspan="2" align="center"> <input type="submit" value="Submit"/> </td>
+    <td colspan="2" align="center"> <input type="submit" value="Submit" class="btn btn-primary"/> </td>
     </tr>
 
 </table>
 </f:form>
 
+<div class=container-md>
 <c:if test="${not empty users}">
-    <table border="1">
+    <table border="1" class="table table-striped">
         <thead><tr> <td>ID</td> <td>Username</td> <td>Password</td> <td>Roles</td> <td>Action</td> </tr></thead>
 
         <c:forEach items="${users}" var="u">
@@ -116,7 +118,9 @@ User Role: <sec:authentication property="principal.authorities"/><br>
         </c:forEach>
     </table>
 </c:if>
+</div>
 
 </div>
+<script src="js/bootstrap.bundle.js"></script>
 </body>
 </html>
