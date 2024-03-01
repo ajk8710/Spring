@@ -23,7 +23,7 @@
 </sec:authorize>
 
 <sec:authorize access="isAuthenticated()">
-<h5>Welcome, ${username}.</h5>
+<h5>Welcome, ${username}..</h5>
 </sec:authorize>
 
 <%@ include file="footer.jsp" %>
