@@ -18,6 +18,12 @@
 <h1>Home</h1>
 <sec:authorize access="!isAuthenticated()">
 <a href="login">Log In</a>
+<br>
+<a href="register">Register</a>
+</sec:authorize>
+
+<sec:authorize access="isAuthenticated()">
+<h5>Welcome, ${username}.</h5>
 </sec:authorize>
 
 <%@ include file="footer.jsp" %>
