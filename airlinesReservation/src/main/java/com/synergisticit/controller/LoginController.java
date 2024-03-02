@@ -57,11 +57,11 @@ public class LoginController {
         return "login";
     }
     
-    @GetMapping("accessDeniedPage")
+    @GetMapping("accessDenied")
     public String accessDeniedPage(Principal principal, Model model) {  // User is logged in but its role do not have access.
         String message = principal.getName() + ", unauthorized access";
         model.addAttribute("message", message);
-        return "accessDeniedPage";
+        return "accessDenied";
     }
     
     @GetMapping("register")
@@ -69,8 +69,9 @@ public class LoginController {
         return "register";
     }
     
-    @PostMapping("saveUser")
-    public String saveUser(@ModelAttribute User user, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job.
+    @PostMapping("registerUser")
+    public String registerUser(@ModelAttribute User user, BindingResult br, Model model) {  // BindingResult must come before Model, otherwise Model will send to error page before BindingResult do its job.
+        System.out.println("why not working");
         if (!br.hasErrors()) {
             Role userRole = roleService.getRoleById(3L);  // USER is role id 3.
             List<Role> roleList = new ArrayList<>();

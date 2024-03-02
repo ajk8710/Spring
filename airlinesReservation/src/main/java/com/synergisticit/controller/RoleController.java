@@ -1,6 +1,7 @@
 package com.synergisticit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ public class RoleController {
     @Autowired RoleService roleService;
     @Autowired RoleValidator roleValidator;
     
+    @PreAuthorize("hasAuthority('Admin')")
     @RequestMapping("roleForm")
     public String roleForm(Role role, Model model) {
         modelData(model);

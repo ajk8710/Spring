@@ -20,7 +20,7 @@
     <div align='center'><h3>Please Sign Up</h3></div>
     
     <div class='mt-5 d-flex justify-content-center'>
-    <frm:form action='saveUser' method='post' modelAttribute='user'>  <!-- action is what happens upon submit, modelAttribute is name of class starting with lower case -->
+    <frm:form action='registerUser' method='post' modelAttribute='user'>  <!-- action is what happens upon submit, modelAttribute is name of class starting with lower case -->
         <div class='form-group'>
             <label> Username: </label>
             <frm:input class='form-control' type='text' path='username'/>

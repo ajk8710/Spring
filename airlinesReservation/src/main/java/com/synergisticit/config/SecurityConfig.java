@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @Configuration
 public class SecurityConfig {
     
@@ -38,6 +40,7 @@ public class SecurityConfig {
         .requestMatchers(AntPathRequestMatcher.antMatcher("/home")).permitAll()
         .requestMatchers(AntPathRequestMatcher.antMatcher("/login")).permitAll()
         .requestMatchers(AntPathRequestMatcher.antMatcher("/register")).permitAll()
+        .requestMatchers(AntPathRequestMatcher.antMatcher("/registerUser")).permitAll()
         .requestMatchers(AntPathRequestMatcher.antMatcher("/WEB-INF/jsp/**")).permitAll()  // allow all jsp files
         .requestMatchers(AntPathRequestMatcher.antMatcher("/css/**")).permitAll()  // allow all css
         .requestMatchers(AntPathRequestMatcher.antMatcher("/images/**")).permitAll()  // allow all images

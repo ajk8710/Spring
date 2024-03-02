@@ -27,10 +27,6 @@
 </div>
 --%>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- tag library provided by JSP JSTL -->
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="f" %> <!-- tag library provided by spring -->
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> <!-- tag library provided by spring security -->
-
 <style>
     a.nav-link {
         display: flex;
@@ -56,15 +52,12 @@
         <li class="nav-item">
           <a class="nav-link active" href="${pageContext.request.contextPath}/flightSearch"><img src="icons/airplane.svg" alt="flight" width="18" height="18"> Find Your Trip</a>
         </li>
-        <sec:authorize access="isAuthenticated()">
         <li class="nav-item">
           <a class="nav-link active" href="${pageContext.request.contextPath}/myReservations"><img src="icons/suitcase-lg.svg" alt="trips" width="18" height="18"> My Trips</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="logout"><img src="icons/power.svg" alt="sign out" width="18" height="18"> Sign Out</a>
         </li>
-        </sec:authorize>
-        <sec:authorize access="hasAuthority('Admin')">  <!-- If admin, show forms -->
         <li class="nav-item dropdown">
           <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="icons/file-text.svg" alt="forms" width="18" height="18"> Forms
@@ -79,7 +72,6 @@
             <li><a class="dropdown-item" href="${pageContext.request.contextPath}/reservationForm">Reservation Form</a></li>
           </ul>
         </li>
-        </sec:authorize>
       </ul>
     </div>
   </div>

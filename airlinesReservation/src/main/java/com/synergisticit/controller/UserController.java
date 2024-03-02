@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ public class UserController {
     @Autowired RoleService roleService;
     @Autowired UserValidator userValidator;
     
+    @PreAuthorize("hasAuthority('Admin')")
     @RequestMapping("userForm")
     public String userForm(User user, Model model) {
         modelData(model);

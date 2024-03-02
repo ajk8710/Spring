@@ -1,6 +1,7 @@
 package com.synergisticit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ public class AirlinesController {
     @Autowired AirlinesService airlinesService;
     @Autowired AirlinesValidator airlinesValidator;
     
+    @PreAuthorize("hasAuthority('Admin')")
     @RequestMapping("airlinesForm")
     public String airlinesForm(Airlines airlines, Model model) {
         modelData(model);
